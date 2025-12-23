@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { ScrambleInView } from "@/components/scramble-text"
+import { Magnet, Ghost, Workflow, Zap, Brain, type LucideIcon } from "lucide-react"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -14,30 +15,35 @@ const signals = [
     title: "LEAD FLOW OS",
     subtitle: "AUTOMATIZACIÓN DE VENTAS & CRM",
     note: "Captura y cualificación autónoma de leads en tiempo real.",
+    icon: Magnet,
   },
   {
     date: "2025.05.28",
     title: "SHADOW OPS",
     subtitle: "ATENCIÓN AL CLIENTE CON IA",
     note: "Agentes invisibles para soporte y operaciones 24/7.",
+    icon: Ghost,
   },
   {
     date: "2025.05.15",
     title: "DATA PIPELINE",
     subtitle: "INTEGRACIÓN DE APIS Y DATOS",
     note: "Unificación de flujos de datos y estructuración API.",
+    icon: Workflow,
   },
   {
     date: "2025.04.30",
     title: "AUTO_SCALE",
     subtitle: "INFRAESTRUCTURA CLOUD ESCALABLE",
     note: "Infraestructura líquida que se adapta a la demanda.",
+    icon: Zap,
   },
   {
     date: "2025.04.12",
     title: "NEURAL SYNC",
     subtitle: "MODELOS PROPIETARIOS & RAG",
     note: "Sincronización de modelos de lenguaje propietarios.",
+    icon: Brain,
   },
 ]
 
@@ -167,9 +173,11 @@ function SignalCard({
   signal,
   index,
 }: {
-  signal: { date: string; title: string; subtitle: string; note: string }
+  signal: { date: string; title: string; subtitle: string; note: string; icon: LucideIcon }
   index: number
 }) {
+  const Icon = signal.icon
+
   return (
     <article
       className={cn(
@@ -179,7 +187,7 @@ function SignalCard({
       )}
     >
       {/* Card with paper texture effect */}
-      <div className="relative bg-card border border-border/50 md:border-t md:border-l md:border-r-0 md:border-b-0 p-8">
+      <div className="relative bg-card border border-border/50 md:border-t md:border-l md:border-r-0 md:border-b-0 p-8 h-full">
         {/* Top torn edge effect */}
         <div className="absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-border/40 to-transparent" />
 
@@ -188,16 +196,24 @@ function SignalCard({
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
             No. {String(index + 1).padStart(2, "0")}
           </span>
-          <time className="font-mono text-[10px] text-muted-foreground/60">{signal.date}</time>
+          {/* Replaced Date with Icon or placed Icon relative? 
+              User wants Big Icon. I'll put it top-right absolute to be safe and clean.
+           */}
+          <time className="font-mono text-[10px] text-muted-foreground/60 opacity-0 md:opacity-100 transition-opacity">{signal.date}</time>
+        </div>
+
+        {/* Icon Absolute */}
+        <div className="absolute top-6 right-6">
+          <Icon className="w-8 h-8 text-gray-600 transition-colors duration-300 group-hover:text-cyan-400" strokeWidth={1.5} />
         </div>
 
         {/* Title */}
-        <h3 className="font-[var(--font-bebas)] text-4xl tracking-tight mb-2 group-hover:text-accent transition-colors duration-300">
+        <h3 className="font-[var(--font-bebas)] text-4xl tracking-tight mb-2 group-hover:text-accent transition-colors duration-300 relative z-10">
           {signal.title}
         </h3>
 
         {/* Subtitle */}
-        <h3 className="font-mono text-xs text-accent mb-4 tracking-wider uppercase">
+        <h3 className="font-mono text-xs text-gray-400 mb-4 tracking-wider uppercase relative z-10">
           {signal.subtitle}
         </h3>
 
@@ -205,7 +221,7 @@ function SignalCard({
         <div className="w-12 h-px bg-accent/60 mb-6 group-hover:w-full transition-all duration-500" />
 
         {/* Description */}
-        <p className="font-mono text-xs text-muted-foreground leading-relaxed">{signal.note}</p>
+        <p className="font-mono text-xs text-muted-foreground leading-relaxed relative z-10">{signal.note}</p>
 
         {/* Bottom right corner fold effect */}
         <div className="absolute bottom-0 right-0 w-6 h-6 overflow-hidden">

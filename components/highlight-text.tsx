@@ -75,14 +75,14 @@ export function HighlightText({ children, className = "", parallaxSpeed = 0.3 }:
     <span ref={containerRef} className={`relative inline-block ${className}`}>
       <span
         ref={highlightRef}
-        className="absolute inset-0 bg-gradient-to-r from-accent to-accent-purple opacity-90 shadow-[0_0_15px_rgba(139,92,246,0.5)] box-decoration-clone px-2 -mx-2"
+        className="absolute inset-0 bg-gradient-to-r from-accent to-accent-purple opacity-90 shadow-[0_0_15px_rgba(139,92,246,0.5)] box-decoration-clone py-2 px-4 -mx-4 -my-2"
         style={{
           boxDecorationBreak: "clone",
           WebkitBoxDecorationBreak: "clone",
-          left: "-0.15em",
-          right: "-0.15em",
-          top: "0.1em",
-          bottom: "0.1em",
+          left: "0",
+          right: "0",
+          top: "0",
+          bottom: "0",
           transform: "scaleX(0)",
           transformOrigin: "left center",
         }}

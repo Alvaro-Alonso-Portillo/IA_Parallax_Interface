@@ -209,7 +209,7 @@ function WorkCard({
       {/* ROI Metrics Box - Floating Bottom Right */}
       <div
         className={cn(
-          "absolute bottom-4 right-4 z-20 px-4 py-2 border border-accent-purple/30 bg-black/50 backdrop-blur-md rounded shadow-xl transition-all duration-500 transform",
+          "absolute bottom-4 right-4 z-20 px-4 py-2 border border-white/10 border-t-cyan-500/50 bg-black/40 backdrop-blur-xl rounded shadow-xl transition-all duration-500 transform",
           isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         )}
       >
@@ -234,7 +234,7 @@ function WorkCard({
         <h3
           className={cn(
             "mt-3 font-[var(--font-bebas)] text-2xl md:text-4xl tracking-tight transition-all duration-300",
-            isActive ? "text-white opacity-100 translate-x-1" : "text-white/40 opacity-50"
+            isActive ? "text-white opacity-100 translate-x-1" : "text-gray-500 opacity-100"
           )}
         >
           {experiment.title}

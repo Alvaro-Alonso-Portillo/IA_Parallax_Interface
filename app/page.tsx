@@ -8,12 +8,16 @@ import { ColophonSection } from "@/components/colophon-section"
 import { SideNav } from "@/components/side-nav"
 import { MobileMenu } from "@/components/mobile-menu"
 
+import { StickyNav } from "@/components/sticky-nav"
+import { SpotlightGrid } from "@/components/spotlight-grid"
+
 export default function Page() {
   return (
     <main className="relative min-h-screen">
+      <StickyNav />
       <SideNav />
       <MobileMenu />
-      <div className="grid-bg fixed inset-0 opacity-30" aria-hidden="true" />
+      <SpotlightGrid />
 
       <div className="relative z-10">
         <HeroSection />
