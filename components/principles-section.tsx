@@ -92,48 +92,50 @@ export function PrinciplesSection() {
 
   return (
     <section ref={sectionRef} id="principles" className="relative py-48 pl-6 md:pl-28 pr-6 md:pr-12">
-      {/* Section header */}
-      <div ref={headerRef} className="mb-32">
-        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">02 / MANIFIESTO</span>
-        <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">
-          <ScrambleInView text="FILOSOFÍA DEL NÚCLEO" />
-        </h2>
-      </div>
+      <div className="max-w-[1400px] mx-auto">
+        {/* Section header */}
+        <div ref={headerRef} className="mb-32">
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">02 / MANIFIESTO</span>
+          <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">
+            <ScrambleInView text="FILOSOFÍA DEL NÚCLEO" />
+          </h2>
+        </div>
 
-      {/* Staggered principles */}
-      <div ref={principlesRef} className="space-y-24 md:space-y-32">
-        {principles.map((principle, index) => (
-          <article
-            key={index}
-            className={`flex flex-col ${principle.align === "right" ? "items-end text-right" : "items-start text-left"
-              }`}
-          >
-            {/* Annotation label */}
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4">
-              {principle.number} / {principle.titleParts[0].text.split(" ")[0]}
-            </span>
+        {/* Staggered principles */}
+        <div ref={principlesRef} className="space-y-24 md:space-y-32">
+          {principles.map((principle, index) => (
+            <article
+              key={index}
+              className={`flex flex-col ${principle.align === "right" ? "items-end text-right" : "items-start text-left"
+                }`}
+            >
+              {/* Annotation label */}
+              <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4">
+                {principle.number} / {principle.titleParts[0].text.split(" ")[0]}
+              </span>
 
-            <h3 className="font-[var(--font-bebas)] font-thin text-4xl md:text-6xl lg:text-8xl tracking-tight leading-normal overflow-visible py-2">
-              {principle.titleParts.map((part, i) =>
-                part.highlight ? (
-                  <HighlightText key={i} parallaxSpeed={0.6}>
-                    <span className="font-thin">{part.text}</span>
-                  </HighlightText>
-                ) : (
-                  <span key={i} className="font-thin">{part.text}</span>
-                ),
-              )}
-            </h3>
+              <h3 className="font-[var(--font-bebas)] font-thin text-4xl md:text-6xl lg:text-8xl tracking-tight leading-normal overflow-visible py-2">
+                {principle.titleParts.map((part, i) =>
+                  part.highlight ? (
+                    <HighlightText key={i}>
+                      <span className="font-thin">{part.text}</span>
+                    </HighlightText>
+                  ) : (
+                    <span key={i} className="font-thin">{part.text}</span>
+                  ),
+                )}
+              </h3>
 
-            {/* Description */}
-            <p className="mt-6 max-w-md font-sans text-[13px] text-[#888888] leading-relaxed">
-              {principle.description}
-            </p>
+              {/* Description */}
+              <p className="mt-6 max-w-md font-sans text-[13px] text-[#888888] leading-relaxed">
+                {principle.description}
+              </p>
 
-            {/* Decorative line */}
-            <div className={`mt-8 h-[1px] bg-border w-24 md:w-48 ${principle.align === "right" ? "mr-0" : "ml-0"}`} />
-          </article>
-        ))}
+              {/* Decorative line */}
+              <div className={`mt-8 h-[1px] bg-border w-24 md:w-48 ${principle.align === "right" ? "mr-0" : "ml-0"}`} />
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   )

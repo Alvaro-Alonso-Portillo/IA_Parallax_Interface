@@ -52,41 +52,6 @@ export function SignalsSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<HTMLDivElement>(null)
-  const cursorRef = useRef<HTMLDivElement>(null)
-  const [isHovering, setIsHovering] = useState(false)
-
-  useEffect(() => {
-    if (!sectionRef.current || !cursorRef.current) return
-
-    const section = sectionRef.current
-    const cursor = cursorRef.current
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = section.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
-
-      gsap.to(cursor, {
-        x: x,
-        y: y,
-        duration: 0.5,
-        ease: "power3.out",
-      })
-    }
-
-    const handleMouseEnter = () => setIsHovering(true)
-    const handleMouseLeave = () => setIsHovering(false)
-
-    section.addEventListener("mousemove", handleMouseMove)
-    section.addEventListener("mouseenter", handleMouseEnter)
-    section.addEventListener("mouseleave", handleMouseLeave)
-
-    return () => {
-      section.removeEventListener("mousemove", handleMouseMove)
-      section.removeEventListener("mouseenter", handleMouseEnter)
-      section.removeEventListener("mouseleave", handleMouseLeave)
-    }
-  }, [])
 
   useEffect(() => {
     if (!sectionRef.current || !headerRef.current || !cardsRef.current) return
@@ -134,41 +99,37 @@ export function SignalsSection() {
   }, [])
 
   return (
-    <section id="signals" ref={sectionRef} className="relative py-48 pl-6 md:pl-28">
-      <div
-        ref={cursorRef}
-        className={cn(
-          "pointer-events-none absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 z-50",
-          "w-12 h-12 rounded-full border-2 border-accent-purple bg-accent/20 backdrop-blur-sm",
-          "transition-opacity duration-300",
-          isHovering ? "opacity-100" : "opacity-0",
-        )}
-      />
-
-      {/* Section header */}
-      <div ref={headerRef} className="mb-32 pr-6 md:pr-12">
-        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">04 / MÓDULOS</span>
-        <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight mb-6">
-          <ScrambleInView text="SISTEMAS EN LÍNEA" />
-        </h2>
-        <div className="max-w-2xl space-y-4">
-          <p className="font-mono text-sm text-gray-400 leading-relaxed italic border-l-2 border-accent pl-4">
-            Usted adquiere infraestructuras técnicas propietarias que operan como activos permanentes en su balance operativo. Sin modelos de outsourcing ni gestión manual.
-          </p>
+    <section id="signals" ref={sectionRef} className="relative py-48 pl-6 md:pl-28 pr-6 md:pr-12">
+      <div className="max-w-[1400px] mx-auto">
+        {/* Section header */}
+        <div ref={headerRef} className="mb-32">
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">04 / MÓDULOS</span>
+          <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight mb-6">
+            <ScrambleInView text="SISTEMAS EN LÍNEA" />
+          </h2>
+          <div className="max-w-2xl space-y-4 text-balance">
+            <p className="font-sans text-[11px] text-[#888888] leading-relaxed italic border-l border-accent pl-4">
+              Usted adquiere infraestructuras técnicas propietarias que operan como activos permanentes en su balance operativo. Sin modelos de outsourcing ni gestión manual.
+            </p>
+          </div>
         </div>
-      </div>
 
-      {/* Responsive Grid container */}
-      <div
-        ref={(el) => {
-          scrollRef.current = el
-          cardsRef.current = el
-        }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pr-6 md:pr-12"
-      >
-        {signals.map((signal, index) => (
-          <SignalCard key={index} signal={signal} index={index} />
-        ))}
+        {/* Responsive Grid container */}
+        <div
+          ref={(el) => {
+            scrollRef.current = el
+            cardsRef.current = el
+          }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6"
+        >
+          {signals.map((signal, index) => (
+            <div key={index} className={cn(
+              index < 2 ? "lg:col-span-3" : "lg:col-span-2"
+            )}>
+              <SignalCard signal={signal} index={index} />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -188,7 +149,7 @@ function SignalCard({
       className={cn(
         "group relative w-full bg-transparent overflow-hidden",
         "transition-all duration-300 ease-out",
-        "border border-[#333333] hover:border-accent/40",
+        "border border-[#444444] hover:border-accent hover:bg-[#111111]",
       )}
     >
       <div className="relative p-8 h-full">

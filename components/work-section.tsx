@@ -14,7 +14,7 @@ const experiments = [
     title: "PROP-TECH SCALE",
     medium: "REAL ESTATE",
     description: "S: Agendamiento manual dependiente de agentes.\nI: Cierre de agendamiento autónomo.\nO: +450% capacidad operativa sin headcount.",
-    span: "col-span-2 row-span-2",
+    span: "md:col-span-1",
     roi: "+450%",
     roiLabel: "CAPACIDAD OPERATIVA"
   },
@@ -22,7 +22,7 @@ const experiments = [
     title: "CORE LOGISTICS",
     medium: "LOGISTICS",
     description: "S: Rotura de stock por procesos manuales.\nI: Reposición predictiva vía modelos RAG.\nO: Latencia cero en error de inventario.",
-    span: "col-span-1 row-span-1",
+    span: "md:col-span-1",
     roi: "0% LATENCIA",
     roiLabel: "ERROR DE INVENTARIO"
   },
@@ -30,7 +30,7 @@ const experiments = [
     title: "L1 AUTONOMOUS",
     medium: "FINTECH",
     description: "S: Soporte Nivel 1 gestionado por humanos.\nI: Erradicación operativa del flujo L1.\nO: -75% payroll offset (85% resolución auto).",
-    span: "col-span-1 row-span-2",
+    span: "md:col-span-1",
     roi: "-75%",
     roiLabel: "PAYROLL OFFSET"
   },
@@ -38,7 +38,7 @@ const experiments = [
     title: "SYNTÉTIC PIPELINE",
     medium: "OUTREACH",
     description: "S: Prospección manual y cualificación lenta.\nI: Pipeline de prospección cualificada 24/7.\nO: 12k leads/mes con 0 intervención humana.",
-    span: "col-span-1 row-span-1",
+    span: "md:col-span-1",
     roi: "12k+",
     roiLabel: "LEADS / MES (0 HC)"
   },
@@ -46,7 +46,7 @@ const experiments = [
     title: "AUDI-PROTOCOL",
     medium: "LEGAL TECH",
     description: "S: Auditoría manual con alto margen de error.\nI: Protocolo de auditoría por agentes IA.\nO: 99.99% precisión en detección de anomalías.",
-    span: "col-span-2 row-span-1",
+    span: "md:col-span-1",
     roi: "99.99%",
     roiLabel: "DATA PRECISION"
   },
@@ -54,7 +54,7 @@ const experiments = [
     title: "ONBOARDING OPS",
     medium: "INTERNAL OPS",
     description: "S: Gestión manual de accesos y roles técnicos.\nI: Automatización de onboarding técnico.\nO: Ejecución finalizada en 30 segundos.",
-    span: "col-span-1 row-span-1",
+    span: "md:col-span-1",
     roi: "30sec",
     roiLabel: "TIME TO PRODUCTION"
   },
@@ -109,33 +109,35 @@ export function WorkSection() {
 
   return (
     <section ref={sectionRef} id="work" className="relative py-48 pl-6 md:pl-28 pr-6 md:pr-12">
-      {/* Section header */}
-      <div ref={headerRef} className="mb-32 flex items-end justify-between">
-        <div>
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">03 / RESULTADOS</span>
-          <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">
-            <ScrambleInView text="CASOS DE ESTUDIO" />
-          </h2>
+      <div className="max-w-[1400px] mx-auto">
+        {/* Section header */}
+        <div ref={headerRef} className="mb-32 flex items-end justify-between">
+          <div>
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">03 / RESULTADOS</span>
+            <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">
+              <ScrambleInView text="CASOS DE ESTUDIO" />
+            </h2>
+          </div>
+          <p className="hidden md:block max-w-xs font-sans text-[11px] text-[#888888] text-right leading-relaxed">
+            Implementaciones de alto impacto y reducción de carga operativa.
+          </p>
         </div>
-        <p className="hidden md:block max-w-xs font-mono text-xs text-muted-foreground text-right leading-relaxed">
-          Implementaciones de alto impacto y reducción de carga operativa.
-        </p>
-      </div>
 
-      {/* Responsive Grid/List */}
-      <div
-        ref={gridRef}
-        className="flex flex-col gap-4 max-h-[60vh] overflow-y-auto md:max-h-none md:overflow-visible md:grid md:grid-cols-4 md:gap-6 md:auto-rows-[200px]"
-      >
-        {experiments.map((experiment, index) => (
-          <WorkCard
-            key={index}
-            experiment={experiment}
-            index={index}
-            persistHover={index === 0}
-            className="w-full md:w-auto"
-          />
-        ))}
+        {/* Responsive Grid/List */}
+        <div
+          ref={gridRef}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+        >
+          {experiments.map((experiment, index) => (
+            <WorkCard
+              key={index}
+              experiment={experiment}
+              index={index}
+              persistHover={index === 0}
+              className="w-full"
+            />
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -183,9 +185,9 @@ function WorkCard({
     <article
       ref={cardRef}
       className={cn(
-        "group relative border border-[#333333] p-5 flex flex-col justify-between transition-all duration-300 cursor-pointer overflow-hidden bg-transparent",
+        "group relative border border-[#444444] p-10 md:p-14 flex flex-col justify-between transition-all duration-300 cursor-pointer overflow-hidden min-h-[400px]",
         experiment.span,
-        isActive && "border-accent/40",
+        isActive ? "border-accent bg-[#111111]" : "border-[#444444] bg-transparent",
         className
       )}
       onMouseEnter={() => setIsHovered(true)}
@@ -215,7 +217,7 @@ function WorkCard({
       {/* ROI Metrics Box - Floating Bottom Right */}
       <div
         className={cn(
-          "absolute bottom-4 right-4 z-20 px-4 py-2 border border-white/10 border-t-cyan-500/50 bg-black/40 backdrop-blur-xl rounded shadow-xl transition-all duration-500 transform",
+          "absolute bottom-4 right-4 z-20 px-4 py-2 border border-white/5 border-t-accent bg-[#080808]/40 backdrop-blur-md rounded shadow-xl transition-all duration-500 transform",
           isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         )}
       >

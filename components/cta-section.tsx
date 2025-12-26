@@ -44,7 +44,7 @@ export function CTASection() {
             {/* Content Container */}
             <div
                 ref={contentRef}
-                className="relative z-10 flex flex-col items-center text-center px-4 max-w-4xl mx-auto"
+                className="relative z-10 flex flex-col items-center text-center px-4 max-w-[1200px] mx-auto"
             >
                 {/* Blinking Status Indicator */}
                 <div className="mb-8 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm">
@@ -55,7 +55,7 @@ export function CTASection() {
                 </div>
 
                 {/* Main Title */}
-                <h2 className="font-[var(--font-bebas)] font-thin text-6xl md:text-8xl lg:text-9xl text-white tracking-tighter leading-[0.9] mb-6">
+                <h2 className="font-[var(--font-bebas)] font-thin text-4xl md:text-6xl lg:text-7xl text-[#CCCCCC] tracking-tighter leading-relaxed mb-6">
                     <ScrambleInView text="¿ES VIABLE SU TRANSICIÓN AUTÓNOMA?" duration={0.6} />
                 </h2>
 
