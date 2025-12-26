@@ -19,7 +19,7 @@ export function StickyNav() {
     return (
         <nav
             className={cn(
-                "fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-3 md:px-12",
+                "fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-3 md:pl-24 md:pr-12",
                 "bg-black/40 backdrop-blur-md border-b border-white/5",
                 "transition-all duration-500 ease-in-out transform",
                 isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"

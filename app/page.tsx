@@ -21,10 +21,10 @@ export default function Page() {
 
       <div className="relative z-10">
         <HeroSection />
-        <LogoTicker />
-        <SignalsSection />
-        <WorkSection />
         <PrinciplesSection />
+        <WorkSection />
+        <SignalsSection />
+        <LogoTicker />
         <CTASection />
         <ColophonSection />
       </div>

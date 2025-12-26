@@ -36,7 +36,7 @@ export function CTASection() {
     return (
         <section
             ref={sectionRef}
-            className="relative w-full bg-[#050505] py-12 md:py-40 flex items-center justify-center overflow-hidden"
+            className="relative w-full bg-[#080808] py-12 md:py-56 flex items-center justify-center overflow-hidden md:pl-20"
         >
             {/* Background Grid */}
             <div className="absolute inset-0 z-0 grid-bg opacity-10 pointer-events-none" />
@@ -55,26 +55,26 @@ export function CTASection() {
                 </div>
 
                 {/* Main Title */}
-                <h2 className="font-[var(--font-bebas)] text-6xl md:text-8xl lg:text-9xl text-white tracking-tighter leading-[0.9] mb-6">
-                    <ScrambleInView text="¿LISTO PARA ESCALAR?" duration={0.6} />
+                <h2 className="font-[var(--font-bebas)] font-thin text-6xl md:text-8xl lg:text-9xl text-white tracking-tighter leading-[0.9] mb-6">
+                    <ScrambleInView text="¿ES VIABLE SU TRANSICIÓN AUTÓNOMA?" duration={0.6} />
                 </h2>
 
                 {/* Subtitle */}
-                <p className="font-mono text-sm md:text-base text-gray-400 mb-12 max-w-xl">
-                    Tu infraestructura autónoma está a un clic de distancia.
+                <p className="font-sans text-[13px] md:text-sm text-[#888888] mb-12 max-w-xl leading-relaxed">
+                    Evaluamos la arquitectura técnica de su empresa antes de cualquier compromiso de integración. Conversación técnica de alto nivel para determinar su potencial de escala.
                 </p>
 
                 {/* High Interaction Button */}
                 <button
                     className="group relative inline-flex items-center gap-3 px-8 py-4 bg-transparent border border-white/20 overflow-hidden transition-all duration-300 hover:border-accent"
                 >
-                    {/* Hover Fill Effect - Gradient */}
-                    <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-accent to-accent-purple translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0" />
+                    {/* Hover Fill Effect - Solid Accent */}
+                    <div className="absolute inset-0 w-full h-full bg-accent translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0" />
 
                     {/* Text Content */}
                     <div className="relative z-10 flex items-center gap-3">
                         <span className="font-mono text-xs md:text-sm font-bold uppercase tracking-wider text-white transition-colors duration-300 group-hover:text-black">
-                            INICIAR CONSULTA DE VIABILIDAD
+                            SOLICITAR AUDITORÍA DE ACCESO
                         </span>
                         <ArrowRight className="w-4 h-4 text-white transition-colors duration-300 group-hover:text-black group-hover:translate-x-1" />
                     </div>

@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from "react"
 import { cn } from "@/lib/utils"
+import { motion } from "framer-motion"
 
 const navItems = [
   { id: "hero", label: "Index" },
-  { id: "signals", label: "Signals" },
-  { id: "work", label: "Experiments" },
-  { id: "principles", label: "Principles" },
-  { id: "colophon", label: "Colophon" },
+  { id: "principles", label: "Manifesto" },
+  { id: "work", label: "Results" },
+  { id: "signals", label: "Modules" },
+  { id: "colophon", label: "Uplink" },
 ]
 
 export function SideNav() {
@@ -49,17 +50,20 @@ export function SideNav() {
             <span
               className={cn(
                 "h-1.5 w-1.5 rounded-full transition-all duration-300",
-                activeSection === id ? "bg-accent scale-125 animate-pulse shadow-[0_0_8px_var(--accent)]" : "bg-muted-foreground/40 group-hover:bg-foreground/60",
+                activeSection === id ? "bg-accent scale-125 shadow-[0_0_5px_var(--accent)]" : "bg-muted-foreground/40 group-hover:bg-foreground/60",
               )}
             />
-            <span
+            <motion.span
+              initial={{ x: 0, opacity: 0 }}
+              whileHover={{ x: 6, opacity: 1 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className={cn(
-                "absolute left-6 font-mono text-[10px] uppercase tracking-widest opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:left-8 whitespace-nowrap",
-                activeSection === id ? "text-accent" : "text-muted-foreground",
+                "absolute left-8 font-mono text-[10px] uppercase tracking-widest whitespace-nowrap pointer-events-none",
+                activeSection === id ? "text-accent opacity-100" : "text-muted-foreground placeholder:opacity-0",
               )}
             >
               {label}
-            </span>
+            </motion.span>
           </button>
         ))}
       </div >

@@ -2,89 +2,96 @@
 
 import { cn } from "@/lib/utils"
 
-const LOGOS = [
+interface Logo {
+    name: string;
+    path?: string;
+    image?: string;
+}
+
+const LOGOS: Logo[] = [
     {
-        name: "React",
-        path: "M14.5 7c.39 0 .61.27.7.83a21.49 21.49 0 0 1 .4 5.34c0 .35 0 .69-.02 1.02a11.58 11.58 0 0 1-.36 1.83c-.1.32-.32.6-.68.6-.26 0-.5-.15-.65-.4a11.23 11.23 0 0 1-.52-2.3 22.04 22.04 0 0 1-.16-2.12c0-1.4.15-2.73.44-3.8.1-.38.37-.84.85-1m-4 1.44c.15 0 .28.08.38.2.78 1 1.25 2.65 1.34 4.38.01.25-.01.5-.06.74-.1.49-.3.94-.57 1.33-.14.2-.33.32-.55.32-.15 0-.29-.08-.38-.2-.78-1-1.25-2.65-1.34-4.38a3.1 3.1 0 0 1 .06-.75c.1-.48.3-.93.57-1.32.14-.2.33-.32.55-.32m-3.9 1.5c.16 0 .3.09.4.23a9.42 9.42 0 0 1 1 3.33 21.1 21.1 0 0 1 .2 2.56c0 .17-.01.35-.04.51a14.28 14.28 0 0 1-.45 2.5c-.14.4-.38.64-.69.64-.17 0-.31-.08-.41-.22a9.48 9.48 0 0 1-1-3.34 21.1 21.1 0 0 1-.2-2.61c0-.15 0-.32.04-.47a14.28 14.28 0 0 1 .46-2.5c.13-.4.37-.63.69-.63m16.8-1.5c.29 0 .58.11.8.31.5.47.8 1.13.88 1.8.07.56-.03 1.15-.3 1.63-.3.51-.78.9-1.34 1.08-.28.1-.58.11-.86.06-.57-.1-.95-.51-1.12-1.07-.15-.5-.11-1.04.1-1.51.21-.49.6-.87 1.09-1.07.24-.1.5-.16.75-.23m-2.8 0c.26 0 .5.15.65.4a11.23 11.23 0 0 1 .52 2.3c.09.68.14 1.39.16 2.12 0 1.4-.15 2.73-.44 3.8-.1.38-.37.84-.85 1-.39 0-.61-.27-.7-.83a21.49 21.49 0 0 1-.4-5.34c0-.35 0-.69.02-1.02.04-.63.16-1.23.36-1.83.1-.32.32-.6.68-.6m-6.8 0c.18 0 .34.1.43.26.4 1.06 1 1.9 1.7 2.5.4.34.85.57 1.37.66.23.04.47.01.68-.07.41-.16.73-.48.9-.89.15-.36.19-.77.1-1.17-.11-.5-.4-.93-.82-1.21-.4-.27-.89-.37-1.36-.29-.48.08-.92.35-1.25.72a3.46 3.46 0 0 0-.66 1.3c-.07.18-.08.37-.09.56V7c-.2 0-.39 0-.58.05-.5.14-.92.48-1.14.94-.96-.4-1.92-1-2.94-1.68l.47-.94c.18-.32.12-.73-.13-1-.24-.26-.63-.33-.96-.18l-.94.47C6.07 3.6 5 2.62 4.06 1.67A29.17 29.17 0 0 0 3.2 2.7l1.32 1.32c.18.17.22.45.1.67-.13.22-.38.33-.63.28l-1.9-.38a30.43 30.43 0 0 0 0 1.96l1.9-.38c.24-.04.48.07.61.28l.05.08 1.32 1.32c-1.15.6-2.13 1.39-2.95 2.37l-.94-.47c-.32-.16-.72-.08-1 .18-.24.26-.31.63-.17.96l.47.94c-.69 1.02-1.27 1.98-1.68 2.94-.45.22-.8.64-.94 1.13-.15.52.09 1.08.58 1.33.1.04.2.06.31.06v.22c.01.19.03.37.1.55.15.52.56.93 1.07 1.1.2.07.42.08.63.02.43-.13.78-.45.98-.86.19-.4.18-.86.03-1.27-.18-.46-.5-.85-.9-1.13-.37-.23-.8-.34-1.23-.29-.32.04-.63.2-.87.45-.24.25-.37.6-.33.95.03.29.17.56.4.76.24.22.56.32.88.29.33-.03.63-.22.84-.52.22-.3.29-.68.19-1.04-.04-.15-.12-.29-.22-.41l.03-.02z",
-    },
-    {
-        name: "Python",
-        path: "M14.25.75h-4.5c-2.5 0-4.5 2-4.5 4.5v2.25h4.5a.75.75 0 0 1 .75.75v.75h2.25v-2.25c0-1.25 1-2.25 2.25-2.25h1.5v-1.5c0-1.25-1-2.25-2.25-2.25zm-3 2.25a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zm-5.25 6h-1.5c-1.25 0-2.25 1-2.25 2.25v6.75c0 1.25 1 2.25 2.25 2.25h4.5c2.5 0 4.5-2 4.5-4.5v-2.25h-4.5a.75.75 0 0 1-.75-.75v-.75H6v2.25c0 1.25-1 2.25-2.25 2.25h-1.5v1.5c0 1.25 1 2.25 2.25 2.25h1.5v-2.25a2.25 2.25 0 0 0 2.25-2.25v-4.5a2.25 2.25 0 0 0-2.25-2.25zm6.75 12a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5z",
-    },
-    {
-        name: "Next.js",
-        path: "M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm4.8 17.58l-5.64-7.25v6.05H9.6V6.4h2.16l5.44 6.94V7.6h1.56v9.98h-1.96z",
+        name: "NVIDIA",
+        image: "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/nvidia.svg",
     },
     {
         name: "OpenAI",
-        path: "M21.07 10.31a8.34 8.34 0 0 0-2-6.52A8.44 8.44 0 0 0 12 0a8.45 8.45 0 0 0-7.07 3.79 8.32 8.32 0 0 0-2 6.52A8.42 8.42 0 0 0 0 16a8.47 8.47 0 0 0 4.79 7.6 8.32 8.32 0 0 0 6.6 0 8.41 8.41 0 0 0 4.53-2.61A8.46 8.46 0 0 0 21.07 16a8.4 8.4 0 0 0 2.93-5.69zm-1.89 4.31a6.34 6.34 0 0 1-2.31 4.54l-1.2-1.12a.85.85 0 0 1-.22-.85v-5a.85.85 0 0 1 .53-.78l4.47-1.74a6.38 6.38 0 0 1-1.27 4.95zm-9.35 1.5l1.69 1.58a6.35 6.35 0 0 1-5.1-.31 6.35 6.35 0 0 1-3.14-4.22l4.48 1.74a.85.85 0 0 1 .53.79v5a.85.85 0 0 1-.46-.78zm-3.09-8.8l-1.2-1.1a6.35 6.35 0 0 1 4.22-3.14 6.31 6.31 0 0 1 5.09.32l-1.68 1.57a.85.85 0 0 1-.46 1.13l-4.7 2.14a.85.85 0 0 1-1.14-.46V6.32a.85.85 0 0 1-.13-.48zm9.35-1.5l-1.69-1.58a6.35 6.35 0 0 1 5.1.32 6.35 6.35 0 0 1 3.14 4.21L18.06 5.5a.85.85 0 0 1-.53-.78V-1a.85.85 0 0 1-.61.73zm3.12 8.8l1.2 1.12a6.35 6.35 0 0 1-4.23 3.13 6.34 6.34 0 0 1-5.09-.32l1.69-1.58a.85.85 0 0 1 .45-1.12l4.4-2a1 1 0 0 1 1 .5v5a.85.85 0 0 1 .13.48v5a.85.85 0 0 1 .45-.21z",
+        image: "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/openai.svg",
     },
     {
-        name: "TypeScript",
-        path: "M1.2 0C.54 0 0 .54 0 1.2v21.6C0 23.46.54 24 1.2 24h21.6c.66 0 1.2-.54 1.2-1.2V1.2c0-.66-.54-1.2-1.2-1.2H1.2zm14.1 6.38c.63 0 1.1.06 1.48.16l-.28 1.58c-.3-.1-.66-.16-1.04-.16-.92 0-1.28.48-1.28 1.4v6.52h1.54v1.28h-1.54v4.4h-1.44v-4.4h-.9v-1.28h.9v-6c0-1.4.92-2.3 2.56-2.3zm5.66 1.14c1.16 0 1.94.52 2.22 1.4l-1.24.58c-.14-.44-.52-.72-1.02-.72-1.1 0-1.24.96-1.24 1.56 0 .62.1 1.72 1.96 2.34 1.92.64 2.16 1.76 2.16 3.06 0 2.2-1.6 3.08-3.08 3.08-1.52 0-2.48-.6-2.92-1.64l1.24-.62c.28.66.86.96 1.62.96 1.34 0 1.7-.82 1.7-1.7 0-1.06-.52-1.62-2.14-2.18-1.74-.62-2.02-1.72-2.02-2.88 0-1.92 1.3-2.9 2.76-2.9z",
+        name: "STRIPE",
+        image: "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/stripe.svg",
     },
     {
-        name: "Vercel",
-        path: "M12 1L24 22H0L12 1Z",
+        name: "ANTHROPIC",
+        image: "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/anthropic.svg",
     },
     {
-        name: "Stripe",
-        path: "M14.65 10.3c-.66-1.28-2.28-2-4.25-2-3.87 0-6.19 1.96-6.19 5.34 0 3.86 3.4 4.8 6.45 5.5 2.12.5 2.65.92 2.65 1.91 0 1.05-.98 1.62-2.73 1.62-1.7 0-3.32-.6-4.52-1.63l-.86 3.02C6.73 24.8 8.65 25 10.5 25c4.1 0 7-1.95 7-5.52 0-3.96-3.48-4.9-6.3-5.59-2.01-.5-2.52-.92-2.52-1.85 0-1.03 1.05-1.45 2.5-1.45 1.54 0 2.85.49 3.73 1.25l.89-2.83zM10.5 0C4.7 0 0 4.7 0 10.5S4.7 21 10.5 21 21 16.3 21 10.5 16.3 0 10.5 0z",
+        name: "MISTRAL AI",
+        image: "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/mistralai.svg",
     },
     {
-        name: "Docker",
-        path: "M12.95 7.64h-2.24V9.6h2.24V7.64zm-2.58 0h-2.23V9.6h2.23V7.64zm-2.57 0H5.56V9.6h2.24V7.64zm7.72 0h-2.24V9.6h2.24V7.64zm0-2.3H13.28v1.95h2.24V5.34zm-2.58 0h-2.24v1.95h2.24V5.34zm-2.57 0H7.8v1.95h2.24V5.34zm10.3 4.25h-2.25V7.64h2.25V5.35h-2.25V3.04h-2.24v6.55h-8.08v2.3H5.56v2.3H3.32v2.3H1.08v3.26c0 1.5.76 2.8 1.92 3.6A11.08 11.08 0 0 0 12.06 24a11.05 11.05 0 0 0 9.06-4.6 4.38 4.38 0 0 0 1.03-2.91v-6.9z",
+        name: "VERCEL",
+        image: "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/vercel.svg",
     },
-]
+    {
+        name: "GOOGLE CLOUD",
+        image: "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/googlecloud.svg",
+    },
+    {
+        name: "AMAZON AWS",
+        image: "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/amazonwebservices.svg",
+    },
+];
 
 export function LogoTicker() {
     return (
-        <div className="w-full bg-[#050505] py-12 border-b border-white/5 overflow-hidden">
+        <div className="w-full bg-[#080808] py-12 border-b border-white/5 overflow-hidden md:pl-20">
             <div className="mb-8 text-center px-4">
                 <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground/40 block">
-                    CONFIANZA OPERATIVA
+                    NÚCLEO TECNOLÓGICO
                 </span>
             </div>
 
             <div className="relative flex overflow-x-hidden">
                 <div className="animate-infinite-scroll flex gap-12 md:gap-24 items-center whitespace-nowrap pl-12 md:pl-24">
-                    {[...LOGOS, ...LOGOS, ...LOGOS].map((logo, index) => (
+                    {[...LOGOS, ...LOGOS, ...LOGOS, ...LOGOS].map((logo, index) => (
                         <div
                             key={`${logo.name}-${index}`}
                             className="group relative flex items-center justify-center p-4 transition-all duration-300"
                         >
-                            {/* Logo SVG */}
-                            <svg
-                                viewBox="0 0 24 24"
-                                className={cn(
-                                    "w-8 h-8 md:w-10 md:h-10 fill-current transition-all duration-300",
-                                    "text-white/30 group-hover:text-white group-hover:scale-110",
-                                    "group-hover:drop-shadow-[0_0_8px_rgba(0,194,255,0.8)]"
-                                )}
-                            >
-                                <path d={logo.path} />
-                            </svg>
+                            {logo.image ? (
+                                <div className="relative w-24 h-8 md:w-32 md:h-10 transition-all duration-300 opacity-40 group-hover:opacity-100 flex items-center justify-center">
+                                    {/* @ts-ignore */}
+                                    <img
+                                        src={logo.image}
+                                        alt={logo.name}
+                                        className="w-full h-full object-contain filter brightness-0 invert antialiased"
+                                        loading="lazy"
+                                    />
+                                </div>
+                            ) : null}
                         </div>
                     ))}
                 </div>
 
-                {/* Duplicate for seamless effect (Tailwind animate-infinite-scroll usually handles this, but creating double list helps) */}
+                {/* Duplicate for seamless effect */}
                 <div className="animate-infinite-scroll flex gap-12 md:gap-24 items-center whitespace-nowrap pl-12 md:pl-24" aria-hidden="true">
-                    {[...LOGOS, ...LOGOS, ...LOGOS].map((logo, index) => (
+                    {[...LOGOS, ...LOGOS, ...LOGOS, ...LOGOS].map((logo, index) => (
                         <div
                             key={`duplicate-${logo.name}-${index}`}
                             className="group relative flex items-center justify-center p-4 transition-all duration-300"
                         >
-                            <svg
-                                viewBox="0 0 24 24"
-                                className={cn(
-                                    "w-8 h-8 md:w-10 md:h-10 fill-current transition-all duration-300",
-                                    "text-white/30 group-hover:text-white group-hover:scale-110",
-                                    "group-hover:drop-shadow-[0_0_8px_rgba(0,194,255,0.8)]"
-                                )}
-                            >
-                                <path d={logo.path} />
-                            </svg>
+                            {logo.image ? (
+                                <div className="relative w-24 h-8 md:w-32 md:h-10 transition-all duration-300 opacity-40 group-hover:opacity-100 flex items-center justify-center">
+                                    {/* @ts-ignore */}
+                                    <img
+                                        src={logo.image}
+                                        alt={logo.name}
+                                        className="w-full h-full object-contain filter brightness-0 invert antialiased"
+                                        loading="lazy"
+                                    />
+                                </div>
+                            ) : null}
                         </div>
                     ))}
                 </div>

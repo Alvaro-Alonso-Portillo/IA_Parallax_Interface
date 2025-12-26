@@ -17,37 +17,37 @@ export function PrinciplesSection() {
     {
       number: "01",
       titleParts: [
-        { text: "HUMAN", highlight: true },
-        { text: " SUPERVISION", highlight: false },
+        { text: "DECISION", highlight: true },
+        { text: " OWNERSHIP", highlight: false },
       ],
-      description: "Tú defines la estrategia y el objetivo. La máquina ejecuta el proceso.",
+      description: "Antes: Microgestión táctica constante. Cambio: El sistema valida y ejecuta la lógica. Resultado: Libertad directiva total para el crecimiento estratégico.",
       align: "left",
     },
     {
       number: "02",
       titleParts: [
-        { text: "SYSTEMS", highlight: true },
-        { text: " OVER GRIND", highlight: false },
+        { text: "OPERATIONAL", highlight: true },
+        { text: " LEVERAGE", highlight: false },
       ],
-      description: "No trabajes más duro. Construye lógica que escale sin fricción.",
+      description: "Antes: Crecimiento lineal dependiente de nómina. Cambio: Reemplazo de horas-hombre por lógica inagotable. Resultado: Escalabilidad directa con costes marginales cero.",
       align: "right",
     },
     {
       number: "03",
       titleParts: [
-        { text: "INFINITE ", highlight: false },
-        { text: "SCALE", highlight: true },
+        { text: "ELASTIC ", highlight: false },
+        { text: "GROWTH", highlight: true },
       ],
-      description: "Crecimiento ilimitado. Infraestructura que se adapta automáticamente a la demanda.",
+      description: "Antes: Colapso operativo ante picos de demanda. Cambio: Infraestructura líquida auto-escalable. Resultado: Capacidad de expansión inmediata sin contratar personal.",
       align: "left",
     },
     {
       number: "04",
       titleParts: [
-        { text: "DATA ", highlight: false },
-        { text: "PRECISION", highlight: true },
+        { text: "ZERO-ERROR ", highlight: false },
+        { text: "ARCHITECTURE", highlight: true },
       ],
-      description: "Eliminación del error humano. Ejecución quirúrgica en cada interacción.",
+      description: "Antes: Errores humanos que destruyen el margen. Cambio: Blindaje total mediante procesos deterministas. Resultado: Integridad operativa absoluta en cada interacción.",
       align: "right",
     },
   ]
@@ -91,10 +91,10 @@ export function PrinciplesSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="principles" className="relative py-32 pl-6 md:pl-28 pr-6 md:pr-12">
+    <section ref={sectionRef} id="principles" className="relative py-48 pl-6 md:pl-28 pr-6 md:pr-12">
       {/* Section header */}
-      <div ref={headerRef} className="mb-24">
-        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">04 / PRINCIPIOS</span>
+      <div ref={headerRef} className="mb-32">
+        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">02 / MANIFIESTO</span>
         <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">
           <ScrambleInView text="FILOSOFÍA DEL NÚCLEO" />
         </h2>
@@ -113,20 +113,20 @@ export function PrinciplesSection() {
               {principle.number} / {principle.titleParts[0].text.split(" ")[0]}
             </span>
 
-            <h3 className="font-[var(--font-bebas)] text-4xl md:text-6xl lg:text-8xl tracking-tight leading-normal overflow-visible py-2">
+            <h3 className="font-[var(--font-bebas)] font-thin text-4xl md:text-6xl lg:text-8xl tracking-tight leading-normal overflow-visible py-2">
               {principle.titleParts.map((part, i) =>
                 part.highlight ? (
                   <HighlightText key={i} parallaxSpeed={0.6}>
-                    {part.text}
+                    <span className="font-thin">{part.text}</span>
                   </HighlightText>
                 ) : (
-                  <span key={i}>{part.text}</span>
+                  <span key={i} className="font-thin">{part.text}</span>
                 ),
               )}
             </h3>
 
             {/* Description */}
-            <p className="mt-6 max-w-md font-mono text-sm text-muted-foreground leading-relaxed">
+            <p className="mt-6 max-w-md font-sans text-[13px] text-[#888888] leading-relaxed">
               {principle.description}
             </p>
 

@@ -4,58 +4,59 @@ import { useState, useRef, useEffect } from "react"
 import { cn } from "@/lib/utils"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { motion } from "framer-motion"
 import { ScrambleInView } from "@/components/scramble-text"
 
 gsap.registerPlugin(ScrollTrigger)
 
 const experiments = [
   {
-    title: "NEXUS PROP-TECH",
-    medium: "REAL ESTATE AUTOMATION",
-    description: "Sistema integral de cualificación de leads, agendamiento de visitas y generación de contratos sin intervención humana.",
+    title: "PROP-TECH SCALE",
+    medium: "REAL ESTATE",
+    description: "S: Agendamiento manual dependiente de agentes.\nI: Cierre de agendamiento autónomo.\nO: +450% capacidad operativa sin headcount.",
     span: "col-span-2 row-span-2",
     roi: "+450%",
-    roiLabel: "EFICIENCIA OPERATIVA"
+    roiLabel: "CAPACIDAD OPERATIVA"
   },
   {
-    title: "LOGISTICS AI",
-    medium: "ECOMMERCE",
-    description: "Predicción de stock y reabastecimiento autónomo.",
+    title: "CORE LOGISTICS",
+    medium: "LOGISTICS",
+    description: "S: Rotura de stock por procesos manuales.\nI: Reposición predictiva vía modelos RAG.\nO: Latencia cero en error de inventario.",
     span: "col-span-1 row-span-1",
-    roi: "-30%",
-    roiLabel: "COSTES DE STOCK"
+    roi: "0% LATENCIA",
+    roiLabel: "ERROR DE INVENTARIO"
   },
   {
-    title: "FINTECH BOT V2",
-    medium: "CUSTOMER SUPPORT",
-    description: "Resolución automática del 85% de tickets de Nivel 1.",
+    title: "L1 AUTONOMOUS",
+    medium: "FINTECH",
+    description: "S: Soporte Nivel 1 gestionado por humanos.\nI: Erradicación operativa del flujo L1.\nO: -75% payroll offset (85% resolución auto).",
     span: "col-span-1 row-span-2",
-    roi: "85%",
-    roiLabel: "RESOLUCIÓN AUTO"
+    roi: "-75%",
+    roiLabel: "PAYROLL OFFSET"
   },
   {
-    title: "LEAD GEN MATRIX",
+    title: "SYNTÉTIC PIPELINE",
     medium: "OUTREACH",
-    description: "Scraping B2B y enriquecimiento de bases de datos.",
+    description: "S: Prospección manual y cualificación lenta.\nI: Pipeline de prospección cualificada 24/7.\nO: 12k leads/mes con 0 intervención humana.",
     span: "col-span-1 row-span-1",
     roi: "12k+",
-    roiLabel: "LEADS / MES"
+    roiLabel: "LEADS / MES (0 HC)"
   },
   {
-    title: "DOC PARSER",
-    medium: "LEGAL",
-    description: "Auditoría automática de contratos y cumplimiento.",
+    title: "AUDI-PROTOCOL",
+    medium: "LEGAL TECH",
+    description: "S: Auditoría manual con alto margen de error.\nI: Protocolo de auditoría por agentes IA.\nO: 99.99% precisión en detección de anomalías.",
     span: "col-span-2 row-span-1",
-    roi: "99.9%",
-    roiLabel: "PRECISIÓN DATA"
+    roi: "99.99%",
+    roiLabel: "DATA PRECISION"
   },
   {
-    title: "HR ONBOARDING",
+    title: "ONBOARDING OPS",
     medium: "INTERNAL OPS",
-    description: "Alta de empleados y gestión de accesos en 30 segundos.",
+    description: "S: Gestión manual de accesos y roles técnicos.\nI: Automatización de onboarding técnico.\nO: Ejecución finalizada en 30 segundos.",
     span: "col-span-1 row-span-1",
     roi: "30sec",
-    roiLabel: "TIEMPO DE ALTA"
+    roiLabel: "TIME TO PRODUCTION"
   },
 ]
 
@@ -107,9 +108,9 @@ export function WorkSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="work" className="relative py-32 pl-6 md:pl-28 pr-6 md:pr-12">
+    <section ref={sectionRef} id="work" className="relative py-48 pl-6 md:pl-28 pr-6 md:pr-12">
       {/* Section header */}
-      <div ref={headerRef} className="mb-16 flex items-end justify-between">
+      <div ref={headerRef} className="mb-32 flex items-end justify-between">
         <div>
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">03 / RESULTADOS</span>
           <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">
@@ -182,21 +183,15 @@ function WorkCard({
     <article
       ref={cardRef}
       className={cn(
-        "group relative border border-border/40 p-5 flex flex-col justify-between transition-all duration-500 cursor-pointer overflow-hidden",
+        "group relative border border-[#333333] p-5 flex flex-col justify-between transition-all duration-300 cursor-pointer overflow-hidden bg-transparent",
         experiment.span,
-        isActive && "border-accent/60",
+        isActive && "border-accent/40",
         className
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Background layer */}
-      <div
-        className={cn(
-          "absolute inset-0 bg-accent/5 transition-opacity duration-500",
-          isActive ? "opacity-100" : "opacity-0",
-        )}
-      />
+      {/* Background layer removed to maintain 'blueprint' look */}
 
       {/* Active Indicator Bar */}
       <div
@@ -206,6 +201,17 @@ function WorkCard({
         )}
       />
 
+      {/* Data Scan Beam */}
+      {isActive && (
+        <motion.div
+          initial={{ top: "-10%" }}
+          animate={{ top: "110%" }}
+          transition={{ duration: 1.5, ease: "linear", repeat: 0 }}
+          className="absolute left-0 right-0 h-[2px] bg-accent/40 pointer-events-none z-30"
+          style={{ boxShadow: "0 0 10px var(--accent)" }}
+        />
+      )}
+
       {/* ROI Metrics Box - Floating Bottom Right */}
       <div
         className={cn(
@@ -214,10 +220,10 @@ function WorkCard({
         )}
       >
         <div className="flex flex-col items-end">
-          <span className="font-[var(--font-bebas)] text-2xl md:text-3xl text-white tracking-wide">
+          <span className="font-[var(--font-bebas)] font-light text-2xl md:text-3xl text-white tracking-wide">
             {experiment.roi}
           </span>
-          <span className="font-mono text-[9px] uppercase text-muted-foreground">
+          <span className="font-mono text-[9px] uppercase text-muted-foreground/40">
             {experiment.roiLabel}
           </span>
         </div>
@@ -227,14 +233,14 @@ function WorkCard({
       <div className="relative z-10 pl-2"> {/* Added padding for indicator */}
         <span className={cn(
           "font-mono text-[10px] uppercase tracking-widest transition-colors duration-300",
-          isActive ? "text-accent" : "text-muted-foreground/40"
+          isActive ? "text-accent" : "text-muted-foreground/20"
         )}>
           {experiment.medium}
         </span>
         <h3
           className={cn(
-            "mt-3 font-[var(--font-bebas)] text-2xl md:text-4xl tracking-tight transition-all duration-300",
-            isActive ? "text-white opacity-100 translate-x-1" : "text-gray-500 opacity-100"
+            "mt-3 font-[var(--font-bebas)] font-thin text-2xl md:text-3xl lg:text-4xl tracking-tight transition-all duration-300",
+            isActive ? "text-white opacity-100 translate-x-1" : "text-gray-600 opacity-100"
           )}
         >
           {experiment.title}
@@ -242,10 +248,10 @@ function WorkCard({
       </div>
 
       {/* Description - reveals on hover */}
-      <div className="relative z-10 hidden md:block"> {/* Hide description on mobile if list is tight, or keep it depending on height */}
+      <div className="relative z-10 hidden md:block">
         <p
           className={cn(
-            "font-mono text-xs text-muted-foreground leading-relaxed transition-all duration-500 max-w-[280px]",
+            "font-sans text-[11px] text-[#888888] leading-relaxed transition-all duration-500 max-w-[280px]",
             isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2",
           )}
         >
